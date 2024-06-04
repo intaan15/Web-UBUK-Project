@@ -18,8 +18,14 @@ class LibrarianController extends BaseController{
             $this->view('admin/librarian/index', $data);
             $this->view('admin/template/footer');
         } else {
-            Message::setFlash('error', 'Sorry', 'You not have an access');
-            $this->redirect('logout');
+            Message::setFlash('error', 'Sorry', 'You are ' . $_SESSION['role'] . ' not have an access');
+            $data = [
+                'style' => '/css/style2.css',
+                'title' => 'Dashboard'
+            ];
+            $this->view($_SESSION['role'] . '/template/header', $data);
+            $this->view($_SESSION['role'] . '/dashboard/index', $data);
+            $this->view($_SESSION['role'] . '/template/footer');
         }
     }
 
@@ -33,8 +39,14 @@ class LibrarianController extends BaseController{
             $this->view('admin/librarian/insert', $data);
             $this->view('admin/template/footer');
         } else {
-            Message::setFlash('error', 'Sorry', 'You not have an access');
-            $this->redirect('logout');
+            Message::setFlash('error', 'Sorry', 'You are ' . $_SESSION['role'] . ' not have an access');
+            $data = [
+                'style' => '/css/style2.css',
+                'title' => 'Dashboard'
+            ];
+            $this->view($_SESSION['role'] . '/template/header', $data);
+            $this->view($_SESSION['role'] . '/dashboard/index', $data);
+            $this->view($_SESSION['role'] . '/template/footer');
         }
     }
 
@@ -49,8 +61,14 @@ class LibrarianController extends BaseController{
             $this->view('admin/librarian/edit', $data);
             $this->view('admin/template/footer');
         } else {
-            Message::setFlash('error', 'Sorry', 'You not have an access');
-            $this->redirect('logout');
+            Message::setFlash('error', 'Sorry', 'You are ' . $_SESSION['role'] . ' not have an access');
+            $data = [
+                'style' => '/css/style2.css',
+                'title' => 'Dashboard'
+            ];
+            $this->view($_SESSION['role'] . '/template/header', $data);
+            $this->view($_SESSION['role'] . '/dashboard/index', $data);
+            $this->view($_SESSION['role'] . '/template/footer');
         }
     }
 
@@ -64,17 +82,17 @@ class LibrarianController extends BaseController{
 
         $message = [
             'name' => [
-                'required' => 'Nama harus diisi!',
+                'required' => 'Name not found',
             ],
             'username' => [
-                'required' => 'Username harus diisi!',
-                'aplhanumeric' => 'Masukkan huruf dan angka',
+                'required' => 'Username not found',
+                'aplhanumeric' => 'Username only text and number',
             ],
             'password' => [
-                'required' => 'Password harus diisi!',
+                'required' => 'Password not found',
             ],
             'phone' => [
-                'required' => 'Phone harus diisi!',
+                'required' => 'Phone not found',
             ]
         ];
         [$inputs, $errors] = $this->filter($_POST, $fields, $message);
@@ -103,17 +121,17 @@ class LibrarianController extends BaseController{
 
         $message = [
             'name' => [
-                'required' => 'Nama harus diisi!',
+                'required' => 'Name not found',
             ],
             'username' => [
-                'required' => 'Username harus diisi!',
-                'aplhanumeric' => 'Masukkan huruf dan angka',
+                'required' => 'Username not found',
+                'aplhanumeric' => 'Username only text and number',
             ],
             'password' => [
-                'required' => 'Password harus diisi!',
+                'required' => 'Password not found',
             ],
             'phone' => [
-                'required' => 'Phone harus diisi!',
+                'required' => 'Phone not found',
             ]
         ];
         [$inputs, $errors] = $this->filter($_POST, $fields, $message);

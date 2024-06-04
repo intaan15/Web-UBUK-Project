@@ -75,7 +75,7 @@ class AuthController extends BaseController{
                     $_SESSION['id'] = $user['id'];
                     $_SESSION['name'] = $user['name'];
                     $_SESSION['role'] = $user['role'];
-                    Message::setFlash('success', 'Successfully', 'You are ' . $user['role'] );
+                    Message::setFlash('success', 'Welcome, ' . $user['name'], 'You are ' . $user['role'] );
 
                     setcookie('role', $user['role'], time() + 86400, '/');
 

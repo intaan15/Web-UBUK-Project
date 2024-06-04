@@ -9,6 +9,7 @@ if(!file_exists($file)) {
 $properties = parse_ini_file($file);
 
 define('BASEURL', $properties['base_url']);
+define('BASEDIR', $properties['base_dir']);
 define('PATHURL', $properties['base_path']);
 define('DB_HOST', $properties['db_host']);
 define('DB_USER', $properties['db_user']);

@@ -2,15 +2,15 @@
 
 class Validation {
     const DEFAULT_VALIDATION_ERRORS = [
-        'required' => '%s harus diisi',
-        'email' => '%s email tidak valid',
-        'min' => '%s harus lebih dari %d karakter',
-        'max' => '%s harus kurang dari %d karakter',
-        'between' => '%s harus diantara %d and %d karakter',
-        'same' => '$s and %s tidak sama',
-        'alphanumeric' => '%s harus diisi huruf dan angka',
-        'secure' => '%s jumlah diantara 8 and 64 characters and ada angka, huruf besar, huruf kecil and dan karakter spesial',
-        'unique' => '$s sudah ada',
+        'required' => '%s not found',
+        'email' => '%s email not valid',
+        'min' => '%s must be more than %d characters',
+        'max' => '%s must be less than %d characters',
+        'between' => '%s must be between %d and %d characters',
+        'same' => '$s and %s notsame',
+        'alphanumeric' => '%s only text and number',
+        'secure' => '%s is between 8 and 64 characters and there are numbers, uppercase, lowercase and dan special characters',
+        'unique' => '$s already exists',
     ];
 
     public function validate(array $data, array $fields, array $messages = []) : array {

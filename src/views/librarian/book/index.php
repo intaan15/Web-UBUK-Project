@@ -26,14 +26,14 @@ Message::flash();
                         ?>
                         <tr>
                             <td><?= $no++ ?></td>
-                            <td class="tdname"><?= $row['name_book'] ?></td>
+                            <td class="tdname"><?= $row['name'] ?></td>
                             <td><?= $row['stock'] ?></td>
                             <td><?= $row['price'] ?></td>
                             <td>
-                                <img src= "<?= BASEURL . '/public/img/' . $row['image'] ?>" alt="<?= $row['name_book'] ?>" width="60px" height="100px">    
+                                <img src= "<?= BASEURL . '/public/img/book/' . $row['image'] ?>" alt="<?= $row['name'] ?>" width="60px" height="100px">    
                             </td>
                             <td class="tdbtn">
-                            <button class="tupd" onclick="location.href='<?= BASEURL . '/librarian/bookedit/' . $row['id_book'] ?>' ">Edit<span class="material-symbols-outlined">edit</span></button>
+                                <button class="tupd" onclick="location.href='<?= BASEURL . '/librarian/bookedit/' . $row['id_book'] ?>' ">Edit<span class="material-symbols-outlined">edit</span></button>
                             </td>
                         </tr>
                         <?php

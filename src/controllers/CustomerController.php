@@ -19,7 +19,13 @@ class CustomerController extends BaseController{
             $this->view('admin/template/footer');
         } else {
             Message::setFlash('error', 'Sorry', 'You not have an access');
-            $this->redirect('logout');
+            $data = [
+                'style' => '/css/style2.css',
+                'title' => 'Dashboard'
+            ];
+            $this->view($_SESSION['role'] . '/template/header', $data);
+            $this->view($_SESSION['role'] . '/dashboard/index', $data);
+            $this->view($_SESSION['role'] . '/template/footer');
         }
     }
     public function indexL(){
@@ -35,7 +41,13 @@ class CustomerController extends BaseController{
             $this->view('librarian/template/footer');
         } else {
             Message::setFlash('error', 'Sorry', 'You not have an access');
-            $this->redirect('logout');
+            $data = [
+                'style' => '/css/style2.css',
+                'title' => 'Dashboard'
+            ];
+            $this->view($_SESSION['role'] . '/template/header', $data);
+            $this->view($_SESSION['role'] . '/dashboard/index', $data);
+            $this->view($_SESSION['role'] . '/template/footer');
         }
     }
 
@@ -50,7 +62,13 @@ class CustomerController extends BaseController{
             $this->view('admin/template/footer');
         } else {
             Message::setFlash('error', 'Sorry', 'You not have an access');
-            $this->redirect('logout');
+            $data = [
+                'style' => '/css/style2.css',
+                'title' => 'Dashboard'
+            ];
+            $this->view($_SESSION['role'] . '/template/header', $data);
+            $this->view($_SESSION['role'] . '/dashboard/index', $data);
+            $this->view($_SESSION['role'] . '/template/footer');
         }
     }
     public function insertL(){
@@ -63,8 +81,14 @@ class CustomerController extends BaseController{
             $this->view('librarian/customer/insert');
             $this->view('librarian/template/footer');
         } else {
-            Message::setFlash('error', 'Sorry', 'You not have an access');
-            $this->redirect('logout');
+            Message::setFlash('error', 'Sorry', 'You are ' . $_SESSION['role'] . ' not have an access');
+            $data = [
+                'style' => '/css/style2.css',
+                'title' => 'Dashboard'
+            ];
+            $this->view($_SESSION['role'] . '/template/header', $data);
+            $this->view($_SESSION['role'] . '/dashboard/index', $data);
+            $this->view($_SESSION['role'] . '/template/footer');
         }
     }
 
@@ -79,8 +103,14 @@ class CustomerController extends BaseController{
             $this->view('admin/customer/edit', $data);
             $this->view('admin/template/footer');
         } else {
-            Message::setFlash('error', 'Sorry', 'You not have an access');
-            $this->redirect('logout');
+            Message::setFlash('error', 'Sorry', 'You are ' . $_SESSION['role'] . ' not have an access');
+            $data = [
+                'style' => '/css/style2.css',
+                'title' => 'Dashboard'
+            ];
+            $this->view($_SESSION['role'] . '/template/header', $data);
+            $this->view($_SESSION['role'] . '/dashboard/index', $data);
+            $this->view($_SESSION['role'] . '/template/footer');
         }
     }
 
@@ -95,8 +125,14 @@ class CustomerController extends BaseController{
             $this->view('librarian/customer/edit', $data);
             $this->view('librarian/template/footer');
         } else {
-            Message::setFlash('error', 'Sorry', 'You not have an access');
-            $this->redirect('logout');
+            Message::setFlash('error', 'Sorry', 'You are ' . $_SESSION['role'] . ' not have an access');
+            $data = [
+                'style' => '/css/style2.css',
+                'title' => 'Dashboard'
+            ];
+            $this->view($_SESSION['role'] . '/template/header', $data);
+            $this->view($_SESSION['role'] . '/dashboard/index', $data);
+            $this->view($_SESSION['role'] . '/template/footer');
         }
     }
 
@@ -110,17 +146,17 @@ class CustomerController extends BaseController{
 
         $message = [
             'name' => [
-                'required' => 'Nama harus diisi!',
+                'required' => 'Name not found',
             ],
             'username' => [
-                'required' => 'Username harus diisi!',
-                'aplhanumeric' => 'Masukkan huruf dan angka',
+                'required' => 'Username not found',
+                'aplhanumeric' => 'username only text and number',
             ],
             'password' => [
-                'required' => 'Password harus diisi!',
+                'required' => 'Password not found',
             ],
             'phone' => [
-                'required' => 'Phone harus diisi!',
+                'required' => 'Phone not found',
             ]
         ];
         [$inputs, $errors] = $this->filter($_POST, $fields, $message);
@@ -147,17 +183,17 @@ class CustomerController extends BaseController{
 
         $message = [
             'name' => [
-                'required' => 'Nama harus diisi!',
+                'required' => 'Name not found',
             ],
             'username' => [
-                'required' => 'Username harus diisi!',
-                'aplhanumeric' => 'Masukkan huruf dan angka',
+                'required' => 'Username not found',
+                'aplhanumeric' => 'username only text and number',
             ],
             'password' => [
-                'required' => 'Password harus diisi!',
+                'required' => 'Password not found',
             ],
             'phone' => [
-                'required' => 'Phone harus diisi!',
+                'required' => 'Phone not found',
             ]
         ];
         [$inputs, $errors] = $this->filter($_POST, $fields, $message);
@@ -186,17 +222,17 @@ class CustomerController extends BaseController{
 
         $message = [
             'name' => [
-                'required' => 'Nama harus diisi!',
+                'required' => 'Name not found',
             ],
             'username' => [
-                'required' => 'Username harus diisi!',
-                'aplhanumeric' => 'Masukkan huruf dan angka',
+                'required' => 'Username not found',
+                'aplhanumeric' => 'username only text and number',
             ],
             'password' => [
-                'required' => 'Password harus diisi!',
+                'required' => 'Password not found',
             ],
             'phone' => [
-                'required' => 'Phone harus diisi!',
+                'required' => 'Phone not found',
             ]
         ];
         [$inputs, $errors] = $this->filter($_POST, $fields, $message);
@@ -233,17 +269,17 @@ class CustomerController extends BaseController{
 
         $message = [
             'name' => [
-                'required' => 'Nama harus diisi!',
+                'required' => 'Name not found',
             ],
             'username' => [
-                'required' => 'Username harus diisi!',
-                'aplhanumeric' => 'Masukkan huruf dan angka',
+                'required' => 'Username not found',
+                'aplhanumeric' => 'username only text and number',
             ],
             'password' => [
-                'required' => 'Password harus diisi!',
+                'required' => 'Password not found',
             ],
             'phone' => [
-                'required' => 'Phone harus diisi!',
+                'required' => 'Phone not found',
             ]
         ];
         [$inputs, $errors] = $this->filter($_POST, $fields, $message);

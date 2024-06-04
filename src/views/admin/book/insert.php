@@ -1,28 +1,39 @@
 <?php
+$data = Message::getData();
+$name = "";
+$stock = "";
+$price = "";
+$image = "";
+if($data) {
+    $name = $data['name'];
+    $stock = $data['stock'];
+    $price = $data['price'];
+    $image = $data['image'];
+}
 Message::flash();
 ?>
         <div class="main">
-            <form action="<?= BASEURL . 'admin/bookinsertproccess' ?>" method="post">
+            <form action="<?= BASEURL . '/admin/bookinsertproccess' ?>" method="post" enctype="multipart/form-data">
                 <h1>Add Book</h1>
                 <div class="forminput">
-                    <label for="newname">Name</label>
-                    <input type="text" id="newname" name="newname" placeholder="Enter name" autocomplete="off">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" placeholder="Enter name" autocomplete="off" value="<?= $name ?>">
                 </div>
                 <div class="forminput">
                     <label for="stock">Stock</label>
-                    <input type="text" id="stock" name="stock" placeholder="Enter stock" autocomplete="off">
+                    <input type="text" id="stock" name="stock" placeholder="Enter stock" autocomplete="off" value="<?= $stock ?>">
                 </div>
                 <div class="forminput">
                     <label for="price">Price</label>
-                    <input type="text" id="price" name="price" placeholder="Enter price" autocomplete="off">
+                    <input type="text" id="price" name="price" placeholder="Enter price" autocomplete="off" value="<?= $price ?>">
                 </div>
                 <div class="forminputimg">
-                    <label for="image">Image</label>
-                    <input type="file" id="image" name="image" placeholder="asdasd" autocomplete="off">
+                    <label for="uploadFile">Image</label>
+                    <input type="file" id="uploadFile" name="uploadFile" placeholder="asdasd" autocomplete="off" value="<?= $image ?>">
                 </div>
                 <div class="btnn">
                     <button onclick="location.href='<?= BASEURL . '/admin/book' ?>'" type="button" class="btnsi">Cancel</button>
-                    <button type="submit" class="btnsi">Submit</button>
+                    <button type="submit" name="insert" class="btnsi">Submit</button>
                 </div>
             </form>
         </div>

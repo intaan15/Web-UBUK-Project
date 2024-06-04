@@ -11,8 +11,14 @@ class DashboardController extends BaseController{
             $this->view('admin/dashboard/index', $data);
             $this->view('admin/template/footer');
         } else {
-            Message::setFlash('error', 'Sorry', 'You not have an access');
-            $this->redirect('logout');
+            Message::setFlash('error', 'Sorry', 'You are ' . $_SESSION['role'] . ' not have an access');
+            $data = [
+                'style' => '/css/style2.css',
+                'title' => 'Dashboard'
+            ];
+            $this->view($_SESSION['role'] . '/template/header', $data);
+            $this->view($_SESSION['role'] . '/dashboard/index', $data);
+            $this->view($_SESSION['role'] . '/template/footer');
         }
     }
     public function indexL(){
@@ -25,8 +31,14 @@ class DashboardController extends BaseController{
             $this->view('librarian/dashboard/index', $data);
             $this->view('librarian/template/footer');
         } else {
-            Message::setFlash('error', 'Sorry', 'You not have an access');
-            $this->redirect('logout');
+            Message::setFlash('error', 'Sorry', 'You are ' . $_SESSION['role'] . ' not have an access');
+            $data = [
+                'style' => '/css/style2.css',
+                'title' => 'Dashboard'
+            ];
+            $this->view($_SESSION['role'] . '/template/header', $data);
+            $this->view($_SESSION['role'] . '/dashboard/index', $data);
+            $this->view($_SESSION['role'] . '/template/footer');        
         }
     }
     public function indexC(){
@@ -39,8 +51,14 @@ class DashboardController extends BaseController{
             $this->view('customer/dashboard/index', $data);
             $this->view('customer/template/footer');
         } else {
-            Message::setFlash('error', 'Sorry', 'You not have an access');
-            $this->redirect('logout');
+            Message::setFlash('error', 'Sorry', 'You are ' . $_SESSION['role'] . ' not have an access');
+            $data = [
+                'style' => '/css/style2.css',
+                'title' => 'Dashboard'
+            ];
+            $this->view($_SESSION['role'] . '/template/header', $data);
+            $this->view($_SESSION['role'] . '/dashboard/index', $data);
+            $this->view($_SESSION['role'] . '/template/footer');        
         }
     }
 }
