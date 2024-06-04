@@ -23,7 +23,7 @@ Message::flash();
                 </div>
                 <div class="forminput">
                     <label for="password">Password</label>
-                    <input type="password" id="password" name="password" placeholder="Enter your password" autocomplete="off" value="<?= $account['password'] ?>">
+                    <input type="password" id="password" name="password" placeholder="Enter your password" autocomplete="off">
                 </div>
                 <div class="forminput">
                     <label for="phone">Phone</label>

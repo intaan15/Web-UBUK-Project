@@ -12,7 +12,6 @@ class Routes {
         $router->get('/signup', ['SignController','register']);
         $router->get('/signinproccess', ['AuthController','saveLogin']);
         $router->get('/logout', ['AuthController','logout']);
-        $router->post('/logout', ['AuthController','logout']);
         $router->post('/signinproccess', ['AuthController','saveLogin']);
         $router->post('/signupproccess', ['AuthController','register']);
 

@@ -167,20 +167,7 @@ class BookController extends BaseController{
             'image' => 'required'
         ];
 
-        $message = [
-            // 'name' => [
-            //     'required' => 'Name not found',
-            // ],
-            // 'stock' => [
-            //     'required' => 'Stock not found',
-            // ],
-            // 'price' => [
-            //     'required' => 'Price not found',
-            // ],
-            // 'image' => [
-            //     'required' => 'Image not found',
-            // ]
-        ];
+        $message = [];
         [$inputs, $errors] = $this->filter($_POST, $fields, $message);
 
         if ($errors) {
@@ -225,20 +212,7 @@ class BookController extends BaseController{
             'id' => 'int'
         ];
 
-        $message = [
-            'name' => [
-                'required' => 'Name not found',
-            ],
-            'stock' => [
-                'required' => 'Stock not found',
-            ],
-            'price' => [
-                'required' => 'Price not found',
-            ],
-            'image' => [
-                'required' => 'Image not found',
-            ]
-        ];
+        $message = [];
         [$inputs, $errors] = $this->filter($_POST, $fields, $message);
 
         if ($errors) {
@@ -268,20 +242,7 @@ class BookController extends BaseController{
             'image' => 'required'
         ];
 
-        $message = [
-            'name' => [
-                'required' => 'Name not found',
-            ],
-            'stock' => [
-                'required' => 'Stock not found',
-            ],
-            'price' => [
-                'required' => 'Price not found',
-            ],
-            'image' => [
-                'required' => 'Image not found',
-            ]
-        ];
+        $message = [];
         [$inputs, $errors] = $this->filter($_POST, $fields, $message);
 
         if ($errors) {
@@ -326,20 +287,7 @@ class BookController extends BaseController{
             'id' => 'int'
         ];
 
-        $message = [
-            'name' => [
-                'required' => 'Name not found',
-            ],
-            'stock' => [
-                'required' => 'Stock not found',
-            ],
-            'price' => [
-                'required' => 'Price not found',
-            ],
-            'image' => [
-                'required' => 'Image not found',
-            ]
-        ];
+        $message = [];
         [$inputs, $errors] = $this->filter($_POST, $fields, $message);
 
         if ($errors) {

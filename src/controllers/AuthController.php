@@ -14,25 +14,17 @@ class AuthController extends BaseController{
             'phone' => 'int | required '
         ];
 
-        $message = [
-            'name' => [
-                'required' => 'Nama harus diisi!',
-            ],
-            'username' => [
-                'required' => 'Username harus diisi!',
-                'aplhanumeric' => 'Masukkan huruf dan angka',
-            ],
-            'password' => [
-                'required' => 'Password harus diisi!',
-            ],
-            'phone' => [
-                'required' => 'Phone harus diisi!',
-            ]
-        ];
+        $message = [];
         [$inputs, $errors] = $this->filter($_POST, $fields, $message);
 
         if ($errors) {
             Message::setFlash('error', 'Failed', $errors[0], $inputs);
+            $this->redirect('signup');
+        }
+
+        $cekUsername = $this->authModel->getByUsername($inputs['username']);
+        if ($cekUsername) {
+            Message::setFlash('error', 'Failed', $inputs['username'] . ' already exists', $inputs);
             $this->redirect('signup');
         }
 
@@ -49,15 +41,7 @@ class AuthController extends BaseController{
             'password' => 'string | required'
         ];
 
-        $message = [
-            'username' => [
-                'required' => 'Username harus diisi!',
-                'aplhanumeric' => 'Masukkan huruf dan angka',
-            ],
-            'password' => [
-                'required' => 'Password harus diisi!',
-            ]
-        ];
+        $message = [];
         [$inputs, $errors] = $this->filter($_POST, $fields, $message);
 
         if ($errors) {

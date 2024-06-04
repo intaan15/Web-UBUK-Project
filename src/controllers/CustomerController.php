@@ -144,22 +144,14 @@ class CustomerController extends BaseController{
             'phone' => 'int | required '
         ];
 
-        $message = [
-            'name' => [
-                'required' => 'Name not found',
-            ],
-            'username' => [
-                'required' => 'Username not found',
-                'aplhanumeric' => 'username only text and number',
-            ],
-            'password' => [
-                'required' => 'Password not found',
-            ],
-            'phone' => [
-                'required' => 'Phone not found',
-            ]
-        ];
+        $message = [];
         [$inputs, $errors] = $this->filter($_POST, $fields, $message);
+
+        $cekCust = $this->customerModel->getByUsername($inputs['username']);
+        if ($cekCust) {
+            Message::setFlash('error', 'Failed', $inputs['username'] . ' already exists', $inputs);
+            $this->redirect('admin/customerinsert');
+        }
 
         if ($errors) {
             Message::setFlash('error', 'Failed', $errors[0], $inputs);
@@ -181,22 +173,14 @@ class CustomerController extends BaseController{
             'phone' => 'int | required '
         ];
 
-        $message = [
-            'name' => [
-                'required' => 'Name not found',
-            ],
-            'username' => [
-                'required' => 'Username not found',
-                'aplhanumeric' => 'username only text and number',
-            ],
-            'password' => [
-                'required' => 'Password not found',
-            ],
-            'phone' => [
-                'required' => 'Phone not found',
-            ]
-        ];
+        $message = [];
         [$inputs, $errors] = $this->filter($_POST, $fields, $message);
+
+        $cekCust = $this->customerModel->getByUsername($inputs['username']);
+        if ($cekCust) {
+            Message::setFlash('error', 'Failed', $inputs['username'] . ' already exists', $inputs);
+            $this->redirect('librarian/customerinsert');
+        }
 
         if ($errors) {
             Message::setFlash('error', 'Failed', $errors[0], $inputs);
@@ -220,26 +204,29 @@ class CustomerController extends BaseController{
             'id' => 'int'
         ];
 
-        $message = [
-            'name' => [
-                'required' => 'Name not found',
-            ],
-            'username' => [
-                'required' => 'Username not found',
-                'aplhanumeric' => 'username only text and number',
-            ],
-            'password' => [
-                'required' => 'Password not found',
-            ],
-            'phone' => [
-                'required' => 'Phone not found',
-            ]
-        ];
+        $message = [];
         [$inputs, $errors] = $this->filter($_POST, $fields, $message);
+
+        if ($inputs['mode'] == 'delete') {
+            $proc = $this->customerModel->delete($inputs['id']);
+            if ($proc) {
+                Message::setFlash('success', 'Successfully', $inputs['name'] . ' deleted');
+                $this->redirect('admin/customer');
+            }
+        }
 
         if ($errors) {
             Message::setFlash('error', 'Failed', $errors[0], $inputs);
             $this->redirect('admin/customeredit/' . $inputs['id']);
+        }
+
+        $cekCust = $this->customerModel->getById($inputs['id']);
+        if ($inputs['username'] != $cekCust['username']) {
+            $cekUsername = $this->customerModel->getByUsernameId($inputs['username'], $inputs['id']);
+            if ($cekUsername) {
+                Message::setFlash('error', 'Failed', $inputs['username'] . ' already exists', $inputs);
+                $this->redirect('admin/customeredit/' . $inputs['id']);
+            }
         }
 
         if ($inputs['mode'] == 'update') {
@@ -248,13 +235,7 @@ class CustomerController extends BaseController{
                 Message::setFlash('success', 'Successfully', $inputs['name'] . ' updated');
                 $this->redirect('admin/customer');
             } 
-        } else {
-            $proc = $this->customerModel->delete($inputs['id']);
-            if ($proc) {
-                Message::setFlash('success', 'Successfully', $inputs['name'] . ' deleted');
-                $this->redirect('admin/customer');
-            }
-        }
+        } 
     }
     
     public function edit_accountL() {
@@ -267,26 +248,29 @@ class CustomerController extends BaseController{
             'id' => 'int'
         ];
 
-        $message = [
-            'name' => [
-                'required' => 'Name not found',
-            ],
-            'username' => [
-                'required' => 'Username not found',
-                'aplhanumeric' => 'username only text and number',
-            ],
-            'password' => [
-                'required' => 'Password not found',
-            ],
-            'phone' => [
-                'required' => 'Phone not found',
-            ]
-        ];
+        $message = [];
         [$inputs, $errors] = $this->filter($_POST, $fields, $message);
+        
+        if ($inputs['mode'] == 'delete') {
+            $proc = $this->customerModel->delete($inputs['id']);
+            if ($proc) {
+                Message::setFlash('success', 'Successfully', $inputs['name'] . ' deleted');
+                $this->redirect('librarian/customer');
+            }
+        }
 
         if ($errors) {
             Message::setFlash('error', 'Failed', $errors[0], $inputs);
             $this->redirect('librarian/customeredit/' . $inputs['id']);
+        }
+
+        $cekCust = $this->customerModel->getById($inputs['id']);
+        if ($inputs['username'] != $cekCust['username']) {
+            $cekUsername = $this->customerModel->getByUsernameId($inputs['username'], $inputs['id']);
+            if ($cekUsername) {
+                Message::setFlash('error', 'Failed', $inputs['username'] . ' already exists', $inputs);
+                $this->redirect('librarian/customeredit/' . $inputs['id']);
+            }
         }
 
         if ($inputs['mode'] == 'update') {
@@ -295,12 +279,6 @@ class CustomerController extends BaseController{
                 Message::setFlash('success', 'Successfully', $inputs['name'] . ' updated');
                 $this->redirect('librarian/customer');
             } 
-        } else {
-            $proc = $this->customerModel->delete($inputs['id']);
-            if ($proc) {
-                Message::setFlash('success', 'Successfully', $inputs['name'] . ' deleted');
-                $this->redirect('librarian/customer');
-            }
-        }
+        } 
     }
 }

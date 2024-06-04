@@ -27,7 +27,17 @@ class CustomerModel extends Database{
         $query = "SELECT * FROM account WHERE id_account = ?";
         return $this->qry($query, [$id])->fetch();
     }
+    
+    public function getByUsername($username) {
+        $query = "SELECT * FROM account WHERE username = ?";
+        return $this->qry($query, [$username])->fetch();
+    }
 
+    public function getByUsernameId($username, $id) {
+        $query = "SELECT * FROM account WHERE username = ? AND id_account != ?";
+        return $this->qry($query, [$username, $id])->fetch();
+    }
+    
     public function update($data) {
         $query = "UPDATE account SET name = ?, username = ?, password = ?, phone = ? WHERE id_account = ?";
         return $this->qry($query, [

@@ -80,22 +80,14 @@ class LibrarianController extends BaseController{
             'phone' => 'int | required '
         ];
 
-        $message = [
-            'name' => [
-                'required' => 'Name not found',
-            ],
-            'username' => [
-                'required' => 'Username not found',
-                'aplhanumeric' => 'Username only text and number',
-            ],
-            'password' => [
-                'required' => 'Password not found',
-            ],
-            'phone' => [
-                'required' => 'Phone not found',
-            ]
-        ];
+        $message = [];
         [$inputs, $errors] = $this->filter($_POST, $fields, $message);
+
+        $cekLibrarian = $this->librarianModel->getByUsername($inputs['username']);
+        if ($cekLibrarian) {
+            Message::setFlash('error', 'Failed', $inputs['username'] . ' already exists', $inputs);
+            $this->redirect('admin/librarianinsert');
+        }
 
         if ($errors) {
             Message::setFlash('error', 'Failed', $errors[0], $inputs);
@@ -119,26 +111,30 @@ class LibrarianController extends BaseController{
             'id' => 'int'
         ];
 
-        $message = [
-            'name' => [
-                'required' => 'Name not found',
-            ],
-            'username' => [
-                'required' => 'Username not found',
-                'aplhanumeric' => 'Username only text and number',
-            ],
-            'password' => [
-                'required' => 'Password not found',
-            ],
-            'phone' => [
-                'required' => 'Phone not found',
-            ]
-        ];
+        $message = [];
         [$inputs, $errors] = $this->filter($_POST, $fields, $message);
+
+        if ($inputs['mode'] == 'delete') {
+            $proc = $this->librarianModel->delete($inputs['id']);
+            if ($proc) {
+                Message::setFlash('success', 'Successfully', $inputs['name'] . ' deleted');
+                $this->redirect('admin/librarian');
+            }
+        }
 
         if ($errors) {
             Message::setFlash('error', 'Failed', $errors[0], $inputs);
             $this->redirect('admin/librarianedit/' . $inputs['id']);
+        }
+
+        $cekLibrarian = $this->librarianModel->getById($inputs['id']);
+
+        if ($inputs['username'] != $cekLibrarian['username']) {
+            $cekUsername = $this->librarianModel->getByUsernameId($inputs['username'], $inputs['id']);
+            if ($cekUsername) {
+                Message::setFlash('error', 'Failed', $inputs['username'] . ' already exists', $inputs);
+                $this->redirect('admin/librarianedit/' . $inputs['id']);
+            }
         }
 
         if ($inputs['mode'] == 'update') {
@@ -147,12 +143,6 @@ class LibrarianController extends BaseController{
                 Message::setFlash('success', 'Successfully', $inputs['name'] . ' updated');
                 $this->redirect('admin/librarian');
             } 
-        } else {
-            $proc = $this->librarianModel->delete($inputs['id']);
-            if ($proc) {
-                Message::setFlash('success', 'Successfully', $inputs['name'] . ' deleted');
-                $this->redirect('admin/librarian');
-            }
-        }
+        } 
     }
 }

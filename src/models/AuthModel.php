@@ -11,6 +11,11 @@ class AuthModel extends Database {
         return $this->qry($query)->fetch();
     }
 
+    public function getByUsername($username) {
+        $query = "SELECT * FROM account WHERE username = ?";
+        return $this->qry($query, [$username])->fetch();
+    }
+
     public function insert($data) {
         $query = "INSERT INTO account
         (name, username, password, phone, role)
