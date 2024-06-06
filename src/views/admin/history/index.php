@@ -3,34 +3,30 @@ Message::flash();
 ?>
         <div class="container1">
             <div class="main"> 
-                <h1>Customer</h1>
+                <h1>History</h1>
                 <table id="example" class="stripe" style="width:100%">
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Name</th>
                             <th>Username</th>
-                            <th>Phone</th>
-                            <th class="thbtn">
-                                <div class="tdbtn">
-                                    <button onclick="location.href='<?= BASEURL . '/librarian/customerinsert' ?>'" type="button" class="tadd"><span class="material-symbols-outlined">library_add</span>New Customer</button>
-                                </div>
-                            </th>
+                            <th>Book</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                            <th>Date</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php
                             $no=1;
-                            foreach($AllCustomer as $row):
+                            foreach($AllHistory as $row):
                         ?>
                         <tr>
                             <td><?= $no++ ?></td>
-                            <td class="tdname"><?= $row['name'] ?></td>
                             <td><?= $row['username'] ?></td>
-                            <td><?= $row['phone'] ?></td>
-                            <td class="thbtn">
-                                <button class="tupd" onclick="location.href='<?= BASEURL . '/librarian/customeredit/' . $row['id_account'] ?>' ">Edit<span class="material-symbols-outlined">edit</span></button>
-                            </td>
+                            <td><?= $row['book'] ?></td>
+                            <td><?= $row['quantity'] ?></td>
+                            <td><?= $row['price'] ?></td>
+                            <td><?= $row['inserted_at'] ?></td>
                         </tr>
                         <?php
                             endforeach;

@@ -1,7 +1,8 @@
 <?php
 $data = Message::getData();
 if($data) {
-    $book['name_book'] = $data['name_book'];
+    $book['name'] = $data['name'];
+    $book['publisher'] = $data['publisher'];
     $book['stock'] = $data['stock'];
     $book['price'] = $data['price'];
     $book['image'] = $data['image'];
@@ -15,7 +16,11 @@ Message::flash();
                 <h1>Edit Book</h1>
                 <div class="forminput">
                     <label for="bookname">Name</label>
-                    <input type="text" id="bookname" name="bookname" placeholder="Enter name" autocomplete="off" value="<?= $book['name_book'] ?>">
+                    <input type="text" id="bookname" name="bookname" placeholder="Enter name" autocomplete="off" value="<?= $book['name'] ?>">
+                </div>
+                <div class="forminput">
+                    <label for="publisher">Publisher</label>
+                    <input type="text" id="publisher" name="publisher" placeholder="Enter publisher" autocomplete="off" value="<?= $book['publisher'] ?>">
                 </div>
                 <div class="forminput">
                     <label for="stock">Stock</label>

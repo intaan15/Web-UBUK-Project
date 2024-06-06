@@ -9,6 +9,7 @@ Message::flash();
                         <tr>
                             <th>No</th>
                             <th>Book Name</th>
+                            <th>Publisher</th>
                             <th>Stock</th>
                             <th>Price</th>
                             <th>Image</th>
@@ -27,6 +28,7 @@ Message::flash();
                         <tr>
                             <td><?= $no++ ?></td>
                             <td class="tdname"><?= $row['name'] ?></td>
+                            <td class="tdname"><?= $row['publisher'] ?></td>
                             <td><?= $row['stock'] ?></td>
                             <td><?= $row['price'] ?></td>
                             <td>
@@ -42,7 +44,8 @@ Message::flash();
                     </tbody>
                 </table>
                 <div class="cpr">
-                    <p><i class="fa fa-instagram" style="font-size:24px"></i> Copyright @aditwchksr :v</p>
+                    <p style="font-size:24px">&copy; 2024 IntaanLailatul. All rights reserved.</p>
+                    <!-- <p><i class="fa fa-instagram" style="font-size:24px"></i> Copyright @aditwchksr :v</p> -->
                 </div>
             </div>
         </div>

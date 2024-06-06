@@ -38,7 +38,8 @@ Message::flash();
                     </tbody>
                 </table>
                 <div class="cpr">
-                    <p><i class="fa fa-instagram" style="font-size:24px"></i> Copyright @aditwchksr :v</p>
+                    <p style="font-size:24px">&copy; 2024 IntaanLailatul. All rights reserved.</p>
+                    <!-- <p><i class="fa fa-instagram" style="font-size:24px"></i> Copyright @aditwchksr :v</p> -->
                 </div>
             </div>
         </div>
